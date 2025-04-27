@@ -1,0 +1,137 @@
+<?xml version="1.0" encoding="utf-8"?>
+<androidx.constraintlayout.widget.ConstraintLayout
+    xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
+    android:layout_width="match_parent"
+    android:layout_height="match_parent"
+    android:background="@android:color/white">
+
+    <!-- Hero Image -->
+    <ImageView
+        android:id="@+id/heroImageOtp"
+        android:layout_width="wrap_content"
+        android:layout_height="200dp"
+        android:src="@drawable/hero_image"
+        android:layout_marginTop="30dp"
+        app:layout_constraintTop_toTopOf="parent"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintEnd_toEndOf="parent"/>
+
+    <!-- OTP Title -->
+    <TextView
+        android:id="@+id/otpTitle"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:text="Enter OTP"
+        android:textSize="22sp"
+        android:textColor="#000000"
+        android:fontFamily="@font/poppins_semibold"
+        app:layout_constraintTop_toBottomOf="@id/heroImageOtp"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintEnd_toEndOf="parent"
+        android:layout_marginTop="16dp"/>
+
+    <!-- OTP Code Inputs -->
+    <LinearLayout
+        android:id="@+id/otpInputs"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_marginTop="20dp"
+        android:orientation="horizontal"
+        android:gravity="center"
+        app:layout_constraintTop_toBottomOf="@id/otpTitle"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintEnd_toEndOf="parent">
+
+        <EditText
+            android:id="@+id/otp1"
+            android:layout_width="45dp"
+            android:layout_height="55dp"
+            android:gravity="center"
+            android:backgroundTint="@android:color/darker_gray"
+            android:inputType="number"
+            android:maxLength="1"
+            android:textSize="18sp"
+            android:fontFamily="@font/poppins_regular"
+            android:layout_margin="6dp"/>
+
+        <EditText
+            android:id="@+id/otp2"
+            android:layout_width="45dp"
+            android:layout_height="55dp"
+            android:gravity="center"
+            android:backgroundTint="@android:color/darker_gray"
+            android:inputType="number"
+            android:maxLength="1"
+            android:textSize="18sp"
+            android:fontFamily="@font/poppins_regular"
+            android:layout_margin="6dp"/>
+
+        <EditText
+            android:id="@+id/otp3"
+            android:layout_width="45dp"
+            android:layout_height="55dp"
+            android:gravity="center"
+            android:backgroundTint="@android:color/darker_gray"
+            android:inputType="number"
+            android:maxLength="1"
+            android:textSize="18sp"
+            android:fontFamily="@font/poppins_regular"
+            android:layout_margin="6dp"/>
+
+        <EditText
+            android:id="@+id/otp4"
+            android:layout_width="45dp"
+            android:layout_height="55dp"
+            android:gravity="center"
+            android:backgroundTint="@android:color/darker_gray"
+            android:inputType="number"
+            android:maxLength="1"
+            android:textSize="18sp"
+            android:fontFamily="@font/poppins_regular"
+            android:layout_margin="6dp"/>
+    </LinearLayout>
+
+    <!-- Continue Button -->
+    <FrameLayout
+        android:id="@+id/continueButton"
+        android:layout_width="0dp"
+        android:layout_height="wrap_content"
+        android:layout_marginTop="30dp"
+        android:layout_marginHorizontal="32dp"
+        app:layout_constraintTop_toBottomOf="@id/otpInputs"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintEnd_toEndOf="parent">
+
+        <ImageView
+            android:layout_width="match_parent"
+            android:layout_height="55dp"
+            android:src="@drawable/button_background"
+            android:scaleType="fitXY"/>
+
+        <TextView
+            android:id="@+id/continueText"
+            android:layout_width="match_parent"
+            android:layout_height="match_parent"
+            android:text="Continue"
+            android:textColor="@android:color/white"
+            android:textSize="18sp"
+            android:gravity="center"
+            android:fontFamily="@font/poppins_semibold"/>
+    </FrameLayout>
+
+    <!-- Resend OTP -->
+    <TextView
+        android:id="@+id/resendOtpText"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:text="Resend OTP"
+        android:textColor="@android:color/darker_gray"
+        android:textSize="14sp"
+        android:fontFamily="@font/poppins_regular"
+        android:layout_marginTop="16dp"
+        app:layout_constraintTop_toBottomOf="@id/continueButton"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintEnd_toEndOf="parent"/>
+
+</androidx.constraintlayout.widget.ConstraintLayout>
