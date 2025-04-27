@@ -1,12 +1,95 @@
 <?xml version="1.0" encoding="utf-8"?>
-<FrameLayout xmlns:android="http://schemas.android.com/apk/res/android"
+<androidx.constraintlayout.widget.ConstraintLayout
+    xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
     android:layout_width="match_parent"
     android:layout_height="match_parent"
-    android:gravity="center">
+    android:background="@android:color/white">
 
-    <TextView
-        android:layout_width="wrap_content"
+    <ScrollView
+        android:layout_width="0dp"
+        android:layout_height="0dp"
+        android:padding="16dp"
+        app:layout_constraintTop_toTopOf="parent"
+        app:layout_constraintBottom_toTopOf="@+id/buttonsLayout"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintEnd_toEndOf="parent">
+
+        <LinearLayout
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:orientation="vertical"
+            android:gravity="center_horizontal">
+
+            <!-- Heart Rate Chart -->
+            <com.github.mikephil.charting.charts.LineChart
+                android:id="@+id/heartRateChart"
+                android:layout_width="match_parent"
+                android:layout_height="250dp"
+                android:layout_marginBottom="24dp"/>
+
+            <!-- SpO2 Chart -->
+            <com.github.mikephil.charting.charts.LineChart
+                android:id="@+id/spo2Chart"
+                android:layout_width="match_parent"
+                android:layout_height="250dp"
+                android:layout_marginBottom="24dp"/>
+
+            <!-- Temperature Chart -->
+            <com.github.mikephil.charting.charts.LineChart
+                android:id="@+id/temperatureChart"
+                android:layout_width="match_parent"
+                android:layout_height="250dp"
+                android:layout_marginBottom="24dp"/>
+
+            <!-- Respiration Rate Chart -->
+            <com.github.mikephil.charting.charts.LineChart
+                android:id="@+id/respirationChart"
+                android:layout_width="match_parent"
+                android:layout_height="250dp"
+                android:layout_marginBottom="24dp"/>
+
+        </LinearLayout>
+    </ScrollView>
+
+    <!-- Buttons Layout at bottom -->
+    <LinearLayout
+        android:id="@+id/buttonsLayout"
+        android:layout_width="0dp"
         android:layout_height="wrap_content"
-        android:text="Alerts Screen"
-        android:textSize="24sp" />
-</FrameLayout>
+        android:orientation="horizontal"
+        android:gravity="center"
+        android:padding="8dp"
+        app:layout_constraintBottom_toBottomOf="parent"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintEnd_toEndOf="parent"
+        android:background="@android:color/white"
+        android:elevation="8dp">
+
+        <Button
+            android:id="@+id/filterButton"
+            android:layout_width="0dp"
+            android:layout_height="wrap_content"
+            android:layout_weight="1"
+            android:text="Filter"
+            android:textSize="16sp"
+            android:fontFamily="@font/poppins_semibold"
+            android:backgroundTint="@color/black"
+            android:textColor="@android:color/white"
+            android:layout_marginEnd="8dp"/>
+
+        <Button
+            android:id="@+id/generatePdfButton"
+            android:layout_width="0dp"
+            android:layout_height="wrap_content"
+            android:layout_weight="1"
+            android:text="Generate Report"
+            android:textSize="16sp"
+            android:fontFamily="@font/poppins_semibold"
+            android:backgroundTint="@color/black"
+            android:textColor="@android:color/white"
+            android:layout_marginStart="8dp"/>
+
+    </LinearLayout>
+
+</androidx.constraintlayout.widget.ConstraintLayout>

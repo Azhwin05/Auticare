@@ -1,24 +1,22 @@
-package com.example.auticare.adapters;
+package com.example.auticare;
 
 import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
 import android.widget.TextView;
-
 import androidx.annotation.NonNull;
 import androidx.recyclerview.widget.RecyclerView;
 
-import com.example.auticare.Message;  // ✅ import your Message.java
-import com.example.auticare.R;
+import com.example.auticare.Message;
 
-import java.util.ArrayList;
+import java.util.List;
 
 public class MessageAdapter extends RecyclerView.Adapter<MessageAdapter.MessageViewHolder> {
 
-    private ArrayList<Message> messagesList; // ✅ Now it’s ArrayList<Message>
+    private List<Message> messageList;
 
-    public MessageAdapter(ArrayList<Message> messagesList) {
-        this.messagesList = messagesList;
+    public MessageAdapter(List<Message> messageList) {
+        this.messageList = messageList;
     }
 
     @NonNull
@@ -31,21 +29,23 @@ public class MessageAdapter extends RecyclerView.Adapter<MessageAdapter.MessageV
 
     @Override
     public void onBindViewHolder(@NonNull MessageViewHolder holder, int position) {
-        Message message = messagesList.get(position);
-        holder.messageTextView.setText(message.getUserName() + ": " + message.getMessage());
+        Message message = messageList.get(position);
+        holder.messageText.setText(message.getMessageText());
+        holder.senderId.setText("From: " + message.getSenderId());
     }
 
     @Override
     public int getItemCount() {
-        return messagesList.size();
+        return messageList.size();
     }
 
     public static class MessageViewHolder extends RecyclerView.ViewHolder {
-        TextView messageTextView;
+        TextView messageText, senderId;
 
         public MessageViewHolder(@NonNull View itemView) {
             super(itemView);
-            messageTextView = itemView.findViewById(R.id.messageContent); // ✅ inside item_message.xml
+            messageText = itemView.findViewById(R.id.text_message);
+            senderId = itemView.findViewById(R.id.text_sender);
         }
     }
 }

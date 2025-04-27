@@ -1,13 +1,14 @@
 {
   "project_info": {
     "project_number": "424072533398",
+    "firebase_url": "https://auticare-dfcee-default-rtdb.asia-southeast1.firebasedatabase.app",
     "project_id": "auticare-dfcee",
     "storage_bucket": "auticare-dfcee.firebasestorage.app"
   },
   "client": [
     {
       "client_info": {
-        "mobilesdk_app_id": "1:424072533398:android:1b7a7e63e268ffb09439b7",
+        "mobilesdk_app_id": "1:424072533398:android:6554f293071d9f509439b7",
         "android_client_info": {
           "package_name": "com.example.auticare"
         }

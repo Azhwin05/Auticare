@@ -1,36 +1,32 @@
 package com.example.auticare;
 
 import android.os.Bundle;
-import android.text.TextUtils;
 import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
+import android.widget.Button;
 import android.widget.EditText;
-import android.widget.ImageView;
 import android.widget.Toast;
-import com.example.auticare.adapters.MessageAdapter;
-
 import androidx.annotation.NonNull;
 import androidx.fragment.app.Fragment;
 import androidx.recyclerview.widget.LinearLayoutManager;
 import androidx.recyclerview.widget.RecyclerView;
-
-import com.google.firebase.database.DataSnapshot;
-import com.google.firebase.database.DatabaseError;
 import com.google.firebase.database.DatabaseReference;
 import com.google.firebase.database.FirebaseDatabase;
 import com.google.firebase.database.ValueEventListener;
-
+import com.google.firebase.database.DataSnapshot;
+import com.google.firebase.database.DatabaseError;
 import java.util.ArrayList;
+import java.util.List;
 
 public class CommunityFragment extends Fragment {
 
     private RecyclerView recyclerView;
-    private EditText messageEditText;
-    private ImageView sendButton;
-    private MessageAdapter adapter;
-    private ArrayList<Message> messageList;
-    private DatabaseReference databaseRef;
+    private MessageAdapter messageAdapter;
+    private List<Message> messageList;
+    private DatabaseReference messagesRef;
+    private EditText editTextMessage;
+    private Button sendButton;
 
     public CommunityFragment() {
         // Required empty public constructor
@@ -39,68 +35,73 @@ public class CommunityFragment extends Fragment {
     @Override
     public View onCreateView(LayoutInflater inflater, ViewGroup container,
                              Bundle savedInstanceState) {
-
+        // Inflate the fragment layout
         View view = inflater.inflate(R.layout.fragment_community, container, false);
 
-        recyclerView = view.findViewById(R.id.messagesRecyclerView);
-        messageEditText = view.findViewById(R.id.messageEditText);
-        sendButton = view.findViewById(R.id.sendButton);
+        // Initialize RecyclerView
+        recyclerView = view.findViewById(R.id.recycler_view_messages);
+        recyclerView.setLayoutManager(new LinearLayoutManager(getContext()));
 
         messageList = new ArrayList<>();
-        adapter = new MessageAdapter(messageList);
-        recyclerView.setLayoutManager(new LinearLayoutManager(getContext()));
-        recyclerView.setAdapter(adapter);
+        messageAdapter = new MessageAdapter(messageList);
+        recyclerView.setAdapter(messageAdapter);
 
-        // Firebase reference
-        databaseRef = FirebaseDatabase.getInstance().getReference("community");
+        // Connect to Firebase "messages" node
+        messagesRef = FirebaseDatabase.getInstance().getReference("messages");
 
-        loadMessages();
+        // Initialize UI elements
+        editTextMessage = view.findViewById(R.id.edit_text_message);
+        sendButton = view.findViewById(R.id.button_send_message);
 
+        loadMessages(); // Load existing messages from Firebase
+
+        // Send message logic
         sendButton.setOnClickListener(v -> sendMessage());
 
         return view;
     }
 
-    private void sendMessage() {
-        String messageText = messageEditText.getText().toString().trim();
-
-        if (TextUtils.isEmpty(messageText)) {
-            Toast.makeText(getContext(), "Enter a message", Toast.LENGTH_SHORT).show();
-            return;
-        }
-
-        String messageId = databaseRef.push().getKey();
-        Message newMessage = new Message(
-                "user123",   // Dummy userId
-                "Ashwin",    // Dummy Username
-                messageText
-        );
-
-        if (messageId != null) {
-            databaseRef.child(messageId).setValue(newMessage);
-            messageEditText.setText("");
-        }
-    }
-
     private void loadMessages() {
-        databaseRef.addValueEventListener(new ValueEventListener() {
+        // Retrieve data from Firebase
+        messagesRef.addValueEventListener(new ValueEventListener() {
             @Override
             public void onDataChange(@NonNull DataSnapshot snapshot) {
                 messageList.clear();
-                for (DataSnapshot messageSnapshot : snapshot.getChildren()) {
-                    Message message = messageSnapshot.getValue(Message.class);
+                for (DataSnapshot dataSnapshot : snapshot.getChildren()) {
+                    Message message = dataSnapshot.getValue(Message.class);
                     if (message != null) {
-                        messageList.add(message);
+                        messageList.add(message); // Add message to the list
                     }
                 }
-                adapter.notifyDataSetChanged();
-                recyclerView.scrollToPosition(messageList.size() - 1);
+                messageAdapter.notifyDataSetChanged(); // Notify the adapter that data has changed
             }
 
             @Override
             public void onCancelled(@NonNull DatabaseError error) {
-                Toast.makeText(getContext(), "Failed to load messages", Toast.LENGTH_SHORT).show();
+                // Handle database error (optional)
             }
         });
+    }
+
+    private void sendMessage() {
+        String messageText = editTextMessage.getText().toString().trim();
+        if (!messageText.isEmpty()) {
+            String senderId = "User1";  // Replace with actual sender ID logic
+
+            // Create Message object
+            Message message = new Message(senderId, messageText); // Use the constructor with two parameters
+
+            // Send message to Firebase Realtime Database
+            messagesRef.push().setValue(message)
+                    .addOnSuccessListener(aVoid -> {
+                        editTextMessage.setText("");  // Clear input field
+                        Toast.makeText(getContext(), "Message sent!", Toast.LENGTH_SHORT).show();
+                    })
+                    .addOnFailureListener(e -> {
+                        Toast.makeText(getContext(), "Failed to send message", Toast.LENGTH_SHORT).show();
+                    });
+        } else {
+            Toast.makeText(getContext(), "Please enter a message", Toast.LENGTH_SHORT).show();
+        }
     }
 }
