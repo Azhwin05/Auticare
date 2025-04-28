@@ -1,12 +1,140 @@
 <?xml version="1.0" encoding="utf-8"?>
-<FrameLayout xmlns:android="http://schemas.android.com/apk/res/android"
+<ScrollView xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
     android:layout_width="match_parent"
     android:layout_height="match_parent"
-    android:gravity="center">
+    android:background="#FFFFFF"
+    android:padding="16dp">
 
-    <TextView
-        android:layout_width="wrap_content"
+    <LinearLayout
+        android:orientation="vertical"
+        android:layout_width="match_parent"
         android:layout_height="wrap_content"
-        android:text="Profile Screen"
-        android:textSize="24sp" />
-</FrameLayout>
+        android:gravity="center_horizontal">
+
+        <!-- Profile Picture -->
+        <FrameLayout
+            android:layout_width="120dp"
+            android:layout_height="120dp"
+            android:layout_marginTop="24dp">
+
+            <ImageView
+                android:id="@+id/profileImage"
+                android:layout_width="match_parent"
+                android:layout_height="match_parent"
+                android:src="@drawable/ic_profile"
+                android:background="@drawable/circle_background"
+                android:scaleType="centerCrop"
+                android:padding="25dp"/>
+        </FrameLayout>
+
+        <!-- Name -->
+        <TextView
+            android:id="@+id/profileName"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:text="Ashwin Kumar"
+            android:textSize="20sp"
+            android:textStyle="bold"
+            android:textColor="#FFC107"
+            android:layout_marginTop="12dp"
+            android:fontFamily="@font/poppins_bold"/>
+
+        <!-- Email -->
+        <TextView
+            android:id="@+id/profileEmail"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:text="ashwin.kumar@example.com"
+            android:textSize="14sp"
+            android:textColor="#666666"
+            android:layout_marginTop="-6dp"
+            android:fontFamily="@font/poppins_regular"/>
+
+        <!-- Divider -->
+        <View
+            android:layout_width="match_parent"
+            android:layout_height="1dp"
+            android:background="#DDDDDD"
+            android:layout_marginTop="24dp"
+            android:layout_marginBottom="16dp"/>
+
+        <!-- Options List -->
+        <LinearLayout
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:orientation="vertical">
+
+            <TextView
+                android:id="@+id/editProfile"
+                style="@style/ProfileOption"
+                android:text="Edit Profile"
+                android:fontFamily="@font/poppins_semibold"/>
+
+            <TextView
+                android:id="@+id/changePicture"
+                style="@style/ProfileOption"
+                android:text="Change Profile Picture"
+                android:fontFamily="@font/poppins_semibold"/>
+
+            <TextView
+                android:id="@+id/viewStats"
+                style="@style/ProfileOption"
+                android:text="App Usage Statistics"
+                android:fontFamily="@font/poppins_semibold"/>
+
+            <TextView
+                android:id="@+id/viewReports"
+                style="@style/ProfileOption"
+                android:text="View Reports"
+                android:fontFamily="@font/poppins_semibold"/>
+
+            <TextView
+                android:id="@+id/notificationSettings"
+                style="@style/ProfileOption"
+                android:text="Notification Settings"
+                android:fontFamily="@font/poppins_semibold"/>
+
+            <TextView
+                android:id="@+id/changePassword"
+                style="@style/ProfileOption"
+                android:text="Change Password"
+                android:fontFamily="@font/poppins_semibold"/>
+
+            <TextView
+                android:id="@+id/aboutApp"
+                style="@style/ProfileOption"
+                android:text="About Auticare"
+                android:fontFamily="@font/poppins_semibold"/>
+
+
+            <TextView
+                android:id="@+id/contactSupport"
+                style="@style/ProfileOption"
+                android:text="Contact Support"
+                android:fontFamily="@font/poppins_semibold"/>
+
+        </LinearLayout>
+
+        <!-- Divider -->
+        <View
+            android:layout_width="match_parent"
+            android:layout_height="1dp"
+            android:background="#DDDDDD"
+            android:layout_marginTop="24dp"
+            android:layout_marginBottom="16dp"/>
+
+        <!-- Logout Button -->
+        <Button
+            android:id="@+id/logoutButton"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:text="Logout"
+            android:textColor="#FFFFFF"
+            android:backgroundTint="#FFC107"
+            android:textStyle="bold"
+            android:fontFamily="@font/poppins_semibold"/>
+
+    </LinearLayout>
+
+</ScrollView>
