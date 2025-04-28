@@ -53,4 +53,8 @@ dependencies {
     implementation 'com.itextpdf:itext7-core:7.2.3'
     implementation 'androidx.recyclerview:recyclerview:1.2.1'
 
+    implementation 'com.google.android.gms:play-services-maps:18.2.0'
+    implementation 'com.google.android.gms:play-services-location:21.0.1'
+
+
 }

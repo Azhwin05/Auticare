@@ -3,48 +3,49 @@ package com.example.auticare;
 public class Message {
     private String senderId;
     private String messageText;
-    private String timestamp;  // Optional: You can add timestamp if needed
+    private long timestamp;  // Changed to long
 
-    // Constructor with two arguments
+    // Default constructor for Firebase
+    public Message() {
+    }
+
+    // Constructor without timestamp (auto handled)
     public Message(String senderId, String messageText) {
         this.senderId = senderId;
         this.messageText = messageText;
+        this.timestamp = System.currentTimeMillis(); // Auto assign current time
     }
 
-    // Constructor with three arguments (including timestamp)
-    public Message(String senderId, String messageText, String timestamp) {
+    // Constructor with all three fields
+    public Message(String senderId, String messageText, long timestamp) {
         this.senderId = senderId;
         this.messageText = messageText;
         this.timestamp = timestamp;
     }
 
-    // Default constructor for Firebase (if using DataSnapshot)
-    public Message() {
-        // Default constructor required for Firebase
-    }
-
-    // Getters and Setters
+    // Getters
     public String getSenderId() {
         return senderId;
-    }
-
-    public void setSenderId(String senderId) {
-        this.senderId = senderId;
     }
 
     public String getMessageText() {
         return messageText;
     }
 
+    public long getTimestamp() {
+        return timestamp;
+    }
+
+    // Setters (Optional but safe)
+    public void setSenderId(String senderId) {
+        this.senderId = senderId;
+    }
+
     public void setMessageText(String messageText) {
         this.messageText = messageText;
     }
 
-    public String getTimestamp() {
-        return timestamp;
-    }
-
-    public void setTimestamp(String timestamp) {
+    public void setTimestamp(long timestamp) {
         this.timestamp = timestamp;
     }
 }

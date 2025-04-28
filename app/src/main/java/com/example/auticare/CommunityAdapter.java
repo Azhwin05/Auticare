@@ -34,7 +34,28 @@ public class CommunityAdapter extends RecyclerView.Adapter<CommunityAdapter.View
         Community community = communityList.get(position);
         holder.communityName.setText(community.getName());
         holder.communityDescription.setText(community.getDescription());
-        holder.communityIcon.setImageResource(community.getIconResId());
+
+        // Set image based on community name
+        switch (community.getName()) {
+            case "Doctor Help":
+                holder.communityIcon.setImageResource(R.drawable.ic_doctor);
+                break;
+            case "Education":
+                holder.communityIcon.setImageResource(R.drawable.ic_education);
+                break;
+            case "Support Groups":
+                holder.communityIcon.setImageResource(R.drawable.ic_support);
+                break;
+            case "Events":
+                holder.communityIcon.setImageResource(R.drawable.ic_event);
+                break;
+            case "Awareness":
+                holder.communityIcon.setImageResource(R.drawable.ic_awarness);
+                break;
+            default:
+                holder.communityIcon.setImageResource(R.drawable.ic_community); // default fallback
+                break;
+        }
 
         holder.cardView.setOnClickListener(v -> {
             Intent intent = new Intent(context, CommunityChatActivity.class);
