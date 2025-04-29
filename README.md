@@ -29,4 +29,4 @@ Built with modern design principles and real-time monitoring features, Auticare 
 - **Java** - Programming Language
 - **XML** - UI Design
 - **Lottie** - Animations
-- **Firebase** *(Optional)*
+- **Firebase** 
