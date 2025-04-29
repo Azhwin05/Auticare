@@ -12,12 +12,14 @@ Built with modern design principles and real-time monitoring features, Auticare 
 ## 🚀 Features
 
 - 📈 Real-time respiratory monitoring
-- 🚨 Instant emergency alert system
-- 🎨 Lottie animations for smooth and engaging user experience
-- 🖥️ Clean and responsive user interface
-- 📱 Easy navigation and health tracking dashboard
-- 🔒 Secure login and authentication
-- ⚡ Fast performance optimized for mobile devices
+## 🚀 Features
+
+- 📈 Real-time respiratory rate monitoring
+- 📡 Live sensor data tracking
+- 🚨 Emergency alert system
+- 🗺️ Map boundary monitoring and alerts
+- 🧑‍⚕️ Health status monitoring and reporting
+
 
 ---
 
